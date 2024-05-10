@@ -1,4 +1,4 @@
-package com.example;
+package br.unifor.atc;
 
 public class Main {
     public static void main(String[] args) {
