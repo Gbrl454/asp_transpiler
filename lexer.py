@@ -38,6 +38,7 @@ tokens = (
     'GTE',
     'LT',
     'LTE',
+    'BY'
 )
 
 # Regras de expressões regulares para tokens simples
@@ -69,6 +70,7 @@ reserved = {
     'var': 'VAR',
     'function': 'FUNCTION',
     'having': 'HAVING',
+    'by':'BY',
     'then': 'THEN',
     'else': 'ELSE',
     'as': 'AS',
@@ -82,7 +84,7 @@ reserved = {
 # Regras de expressões regulares com ações
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value, 'IDENTIFIER')  # Check for reserved words
+    t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
 def t_NUMBER(t):
@@ -93,6 +95,14 @@ def t_NUMBER(t):
 def t_CHARCONST(t):
     r'\'([^\\\n]|(\\.))*?\''
     t.value = t.value.strip("'")
+    return t
+
+def t_KEYWORD_HAVING(t):
+    r'\bhaving\b'
+    return t
+
+def t_KEYWORD_BY(t):
+    r'\bby\b'
     return t
 
 # Ignora espaços e tabs

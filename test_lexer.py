@@ -1,6 +1,5 @@
 from lexer import lexer
 
-
 def test_lexer(data):
     lexer.input(data)
     while True:
@@ -10,6 +9,6 @@ def test_lexer(data):
         print(tok)
 
 # Testes simples
-data = '''cpfValido HAVING cpf.length = 11 DO true;'''
+data = "having cpfVAlido by cpf.length = 11"
 
 test_lexer(data)

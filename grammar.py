@@ -1,8 +1,8 @@
-from lexer import tokens
+import lexer
 import ply.yacc as yacc
 
 # Lista de tokens (necessária pelo yacc)
-tokens = tokens
+tokens = lexer.tokens
 
 # Definindo a gramática
 def p_statement_assign(p):
