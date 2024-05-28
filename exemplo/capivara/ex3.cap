@@ -1,0 +1,7 @@
+handler void:home doing
+    show '\n-----------------------\n';
+    show 'Bem vindo';
+    show '1 - Ir para exemplo 1';
+    show '2 - Ir para exemplo 2'
+    show '3 - Sair';
+end

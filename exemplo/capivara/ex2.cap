@@ -13,6 +13,8 @@ handler void:define_vencedor with txt:jogador1 and txt:jogador2 doing
         show 'Jogador 2 venceu a rodada' rodada;
     either:
         show 'Empate'
+    end
+end
 
 show '* Pedra, Papel e Tesoura *'
 get int:qRodadas by 'Rodadas: ';
@@ -22,3 +24,4 @@ for i in range(qRodadas) do
     get txt:jogador2 by 'Jogador 2: ';
 
     define_vencedor(jogador1, jogador2, i+1)
+end
