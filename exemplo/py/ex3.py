@@ -7,6 +7,7 @@ def home():
 
 while True:
     home()
+    print('Selecione uma opção: ')
     op = int(input())
     if op == 1:
         import ex1
