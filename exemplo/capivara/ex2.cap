@@ -1,1 +1,24 @@
-handler define_vencedor with txt jogador1 and txt 
+handler void:define_vencedor with txt:jogador1 and txt:jogador2 doing
+    having jogador1 == 'pedra' and jogador2 == 'tesoura' do
+        show 'Jogador 1 venceu a rodada' rodada;
+    either having jogador1 == 'papel' and jogador2 == 'pedra' do
+        show 'Jogador 1 venceu a rodada' rodada;
+    either having jogador1 == 'tesoura' and jogador2 == 'papel' do
+        show 'Jogador 1 venceu a rodada' rodada;
+    either having jogador1 == 'pedra' and jogador2 == 'papel' do
+        show 'Jogador 2 venceu a rodada' rodada;
+    either having jogador1 == 'papel' and jogador2 == 'tesoura' do
+        show 'Jogador 2 venceu a rodada' rodada;
+    either having jogador1 == 'tesoura' and jogador2 == 'pedra' do
+        show 'Jogador 2 venceu a rodada' rodada;
+    either:
+        show 'Empate'
+
+show '* Pedra, Papel e Tesoura *'
+get int:qRodadas by 'Rodadas: ';
+
+for i in range(qRodadas) do
+    get txt:jogador1 by 'Jogador 1: ';
+    get txt:jogador2 by 'Jogador 2: ';
+
+    define_vencedor(jogador1, jogador2, i+1)
