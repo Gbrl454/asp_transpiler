@@ -1,0 +1,29 @@
+get int qAlunos by 'Quantidade de alunos: ';
+
+float total_notas = 0;
+float total_aprovados = 0;
+float menor_nota = null;
+float maior_nota = null;
+
+for i in range(qAlunos) do
+    show 'Nota: ';
+    float nota = read();
+    total_notas += nota;
+
+    having menor_nota is null or nota < menor_nota do
+        menor_nota = nota;
+
+    having maior_nota is null or nota > maior_nota do
+        maior_nota = nota;
+
+    having nota >= 7 do
+        show 'Aprovado';
+        total_aprovados += 1;
+    either
+        show 'Reprovado';
+
+show 'Media: ' (total_notas/qAlunos);
+show 'Alunos aprovados: ' total_aprovados;
+show 'Alunos reprovados: ' (qAlunos - total_aprovados);
+show 'Menor nota: ' menor_nota;
+show 'Maior nota: ' maior_nota;
