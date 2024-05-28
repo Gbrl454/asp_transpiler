@@ -1,13 +1,13 @@
-get int qAlunos by 'Quantidade de alunos: ';
+get int:qAlunos by 'Quantidade de alunos: ';
 
-float total_notas = 0;
-float total_aprovados = 0;
-float menor_nota = null;
-float maior_nota = null;
+float:total_notas = 0;
+float:total_aprovados = 0;
+float:menor_nota = null;
+float:maior_nota = null;
 
 for i in range(qAlunos) do
     show 'Nota: ';
-    float nota = read();
+    float:nota = read();
     total_notas += nota;
 
     having menor_nota is null or nota < menor_nota do
