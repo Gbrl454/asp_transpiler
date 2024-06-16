@@ -2,25 +2,29 @@ import ply.lex as lex
 
 # Lista de tokens
 tokens = (
-    'IDENTIFIER',
     'NUMBER',
+    'IDENTIFIER',
     'CHARCONST',
     'INT',
     'BOOLEAN',
     'TEXT',
-    'VAR',
     'FUNCTION',
-    'HAVING',
-    'THEN',
-    'ELSE',
-    'AS',
+    'GET',
+    'BY',
+    'FLOAT',
+    'NULL',
+    'FOR',
+    'IN',
     'DO',
+    'HAVING',
+    'OR',
+    'END',
+    'EITHER',
+    'SHOW',
     'RETURN',
-    'READ',
-    'PRINT',
-    'NEW',
     'EQUALS',
     'SEMICOLON',
+    'COLON',
     'COMMA',
     'DOT',
     'LPAREN',
@@ -38,12 +42,13 @@ tokens = (
     'GTE',
     'LT',
     'LTE',
-    'BY'
+    'TYPE'
 )
 
 # Regras de expressões regulares para tokens simples
 t_EQUALS = r'='
 t_SEMICOLON = r';'
+t_COLON = r':'
 t_COMMA = r','
 t_DOT = r'\.'
 t_LPAREN = r'\('
@@ -67,24 +72,78 @@ reserved = {
     'int': 'INT',
     'boolean': 'BOOLEAN',
     'text': 'TEXT',
-    'var': 'VAR',
+    'float': 'FLOAT',
     'function': 'FUNCTION',
-    'having': 'HAVING',
-    'by':'BY',
-    'then': 'THEN',
-    'else': 'ELSE',
-    'as': 'AS',
+    'get': 'GET',
+    'by': 'BY',
+    'null': 'NULL',
+    'for': 'FOR',
+    'in': 'IN',
     'do': 'DO',
+    'having': 'HAVING',
+    'or': 'OR',
+    'end': 'END',
+    'either': 'EITHER',
+    'show': 'SHOW',
     'return': 'RETURN',
-    'read': 'READ',
-    'print': 'PRINT',
-    'new': 'NEW',
 }
 
 # Regras de expressões regulares com ações
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, 'IDENTIFIER')
+    return t
+
+def t_INT(t):
+    r'\bint\b'
+    return t
+
+def t_BOOLEAN(t):
+    r'\bboolean\b'
+    return t
+
+def t_FLOAT(t):
+    r'\bfloat\b'
+    return t
+
+def t_NULL(t):
+    r'\bnull\b'
+    return t
+
+def t_FOR(t):
+    r'\bfor\b'
+    return t
+
+def t_IN(t):
+    r'\bin\b'
+    return t
+
+def t_DO(t):
+    r'\bdo\b'
+    return t
+
+def t_HAVING(t):
+    r'\bhaving\b'
+    return t
+
+def t_OR(t):
+    r'\bor\b'
+    return t
+
+def t_END(t):
+    r'\bend\b'
+    return t
+
+def t_EITHER(t):
+    r'\beither\b'
+    return t
+
+def t_SHOW(t):
+    r'\bshow\b'
+    return t
+
+def t_RETURN(t):
+    r'\breturn\b'
     return t
 
 def t_NUMBER(t):
@@ -95,14 +154,6 @@ def t_NUMBER(t):
 def t_CHARCONST(t):
     r'\'([^\\\n]|(\\.))*?\''
     t.value = t.value.strip("'")
-    return t
-
-def t_KEYWORD_HAVING(t):
-    r'\bhaving\b'
-    return t
-
-def t_KEYWORD_BY(t):
-    r'\bby\b'
     return t
 
 # Ignora espaços e tabs
