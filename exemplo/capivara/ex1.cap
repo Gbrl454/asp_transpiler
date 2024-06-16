@@ -5,7 +5,7 @@ float:total_aprovados = 0;
 float:menor_nota = null;
 float:maior_nota = null;
 
-for i in range(qAlunos) do
+for i in range qAlunos do
     get float:nota by 'Nota: ';
     total_notas += nota;
 
@@ -23,9 +23,8 @@ for i in range(qAlunos) do
     either
         show 'Reprovado';
     end
-
-show 'Media: ' (total_notas/qAlunos);
-show 'Alunos aprovados: ' total_aprovados;
-show 'Alunos reprovados: ' (qAlunos - total_aprovados);
-show 'Menor nota: ' menor_nota;
-show 'Maior nota: ' maior_nota;
+show 'Media: ' + total_notas/qAlunos;
+show 'Alunos aprovados: ' + total_aprovados;
+show 'Alunos reprovados: ' qAlunos - total_aprovados;
+show 'Menor nota: ' + menor_nota;
+show 'Maior nota: ' + maior_nota;

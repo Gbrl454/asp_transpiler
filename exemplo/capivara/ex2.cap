@@ -23,5 +23,5 @@ for i in range(qRodadas) do
     get txt:jogador1 by 'Jogador 1: ';
     get txt:jogador2 by 'Jogador 2: ';
 
-    define_vencedor(jogador1, jogador2, i+1) // TODO
+    define_vencedor with jogador1, jogador2, i+1
 end
