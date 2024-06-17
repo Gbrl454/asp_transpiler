@@ -42,3 +42,9 @@ nb-configuration.xml
 
 # Plugin directory
 /.quarkus/cli/plugins/
+
+#parser
+*.out
+
+#pycache
+__pycache__

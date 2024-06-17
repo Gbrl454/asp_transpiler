@@ -42,7 +42,8 @@ tokens = (
     'GTE',
     'LT',
     'LTE',
-    'TYPE'
+    'TYPE',
+    'VAR'
 )
 
 # Regras de expressões regulares para tokens simples
@@ -86,6 +87,7 @@ reserved = {
     'either': 'EITHER',
     'show': 'SHOW',
     'return': 'RETURN',
+    'var': 'VAR'
 }
 
 # Regras de expressões regulares com ações
@@ -94,56 +96,9 @@ def t_IDENTIFIER(t):
     t.type = reserved.get(t.value, 'IDENTIFIER')
     return t
 
-def t_INT(t):
-    r'\bint\b'
-    return t
-
-def t_BOOLEAN(t):
-    r'\bboolean\b'
-    return t
-
 def t_FLOAT(t):
-    r'\bfloat\b'
-    return t
-
-def t_NULL(t):
-    r'\bnull\b'
-    return t
-
-def t_FOR(t):
-    r'\bfor\b'
-    return t
-
-def t_IN(t):
-    r'\bin\b'
-    return t
-
-def t_DO(t):
-    r'\bdo\b'
-    return t
-
-def t_HAVING(t):
-    r'\bhaving\b'
-    return t
-
-def t_OR(t):
-    r'\bor\b'
-    return t
-
-def t_END(t):
-    r'\bend\b'
-    return t
-
-def t_EITHER(t):
-    r'\beither\b'
-    return t
-
-def t_SHOW(t):
-    r'\bshow\b'
-    return t
-
-def t_RETURN(t):
-    r'\breturn\b'
+    r'\d+\.\d+'
+    t.value = float(t.value)
     return t
 
 def t_NUMBER(t):
