@@ -43,7 +43,8 @@ tokens = (
     'LT',
     'LTE',
     'TYPE',
-    'VAR'
+    'VAR',
+    'NEWLINE'
 )
 
 # Regras de expressões regulares para tokens simples
@@ -67,6 +68,7 @@ t_GT = r'>'
 t_GTE = r'>='
 t_LT = r'<'
 t_LTE = r'<='
+t_NEWLINE = r'\n'
 
 # Palavras reservadas
 reserved = {
@@ -121,8 +123,10 @@ def t_comment(t):
 
 # Regra para rastrear números de linhas
 def t_newline(t):
-    r'\n+'
+    r'\n'
     t.lexer.lineno += len(t.value)
+    t.type = 'NEWLINE'
+    return t
 
 # Regra de erro
 def t_error(t):

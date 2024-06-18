@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftEITHERORleftPLUSMINUSleftTIMESDIVIDEMODBYrightEQUALSBOOLEAN BY CHARCONST COLON COMMA DIVIDE DO DOT EITHER END EQ EQUALS FLOAT FOR FUNCTION GET GT GTE HAVING IDENTIFIER IN INT LBRACE LPAREN LT LTE MINUS MOD NEQ NULL NUMBER OR PLUS RBRACE RETURN RPAREN SEMICOLON SHOW TEXT TIMES TYPE VARprint_statement : SHOW expression SEMICOLONexpression : expression PLUS term\n                  | expression MINUS term\n                  | termterm : term TIMES factor\n            | term DIVIDE factor\n            | term MOD factor\n            | factorfactor : NUMBER\n              | FLOAT\n              | CHARCONST\n              | LPAREN expression RPAREN\n              | designatordesignator : IDENTIFIER\n                  | designator DOT IDENTIFIERtype : INT\n            | BOOLEAN\n            | TEXT\n            | FLOAT\n            | IDENTIFIERexpression : NULL'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEMODrightEQUALSBOOLEAN BY CHARCONST COLON COMMA DIVIDE DO DOT EITHER END EQ EQUALS FLOAT FOR FUNCTION GET GT GTE HAVING IDENTIFIER IN INT LBRACE LPAREN LT LTE MINUS MOD NEQ NEWLINE NULL NUMBER OR PLUS RBRACE RETURN RPAREN SEMICOLON SHOW TEXT TIMES TYPE VARprogram : declaration_listnewline_statement : NEWLINE\n    | newline_statement NEWLINEdeclaration_list : declaration_list declaration\n                        | declarationdeclaration : variable_declaration\n                   | statementvariable_declaration : type COLON IDENTIFIER EQUALS expression SEMICOLONstatement : read_statement\n                 | print_statement\n                 | newline_statementprint_statement : SHOW expression SEMICOLONread_statement : GET type COLON IDENTIFIER BY expression SEMICOLONexpression : expression PLUS term\n                  | expression MINUS term\n                  | termterm : term TIMES factor\n            | term DIVIDE factor\n            | term MOD factor\n            | factorfactor : NUMBER\n              | FLOAT\n              | CHARCONST\n              | LPAREN expression RPAREN\n              | designatordesignator : IDENTIFIER\n                  | designator DOT IDENTIFIERtype : INT\n            | BOOLEAN\n            | TEXT\n            | FLOATexpression : NULL'
     
-_lr_action_items = {'SHOW':([0,],[2,]),'$end':([1,13,],[0,-1,]),'NULL':([2,10,],[5,5,]),'NUMBER':([2,10,14,15,16,17,18,],[7,7,7,7,7,7,7,]),'FLOAT':([2,10,14,15,16,17,18,],[8,8,8,8,8,8,8,]),'CHARCONST':([2,10,14,15,16,17,18,],[9,9,9,9,9,9,9,]),'LPAREN':([2,10,14,15,16,17,18,],[10,10,10,10,10,10,10,]),'IDENTIFIER':([2,10,14,15,16,17,18,20,],[12,12,12,12,12,12,12,27,]),'SEMICOLON':([3,4,5,6,7,8,9,11,12,21,22,23,24,25,26,27,],[13,-4,-21,-8,-9,-10,-11,-13,-14,-2,-3,-5,-6,-7,-12,-15,]),'PLUS':([3,4,5,6,7,8,9,11,12,19,21,22,23,24,25,26,27,],[14,-4,-21,-8,-9,-10,-11,-13,-14,14,-2,-3,-5,-6,-7,-12,-15,]),'MINUS':([3,4,5,6,7,8,9,11,12,19,21,22,23,24,25,26,27,],[15,-4,-21,-8,-9,-10,-11,-13,-14,15,-2,-3,-5,-6,-7,-12,-15,]),'RPAREN':([4,5,6,7,8,9,11,12,19,21,22,23,24,25,26,27,],[-4,-21,-8,-9,-10,-11,-13,-14,26,-2,-3,-5,-6,-7,-12,-15,]),'TIMES':([4,6,7,8,9,11,12,21,22,23,24,25,26,27,],[16,-8,-9,-10,-11,-13,-14,16,16,-5,-6,-7,-12,-15,]),'DIVIDE':([4,6,7,8,9,11,12,21,22,23,24,25,26,27,],[17,-8,-9,-10,-11,-13,-14,17,17,-5,-6,-7,-12,-15,]),'MOD':([4,6,7,8,9,11,12,21,22,23,24,25,26,27,],[18,-8,-9,-10,-11,-13,-14,18,18,-5,-6,-7,-12,-15,]),'DOT':([11,12,27,],[20,-14,-15,]),}
+_lr_action_items = {'INT':([0,2,3,4,5,7,8,9,14,16,17,19,33,52,54,],[10,10,-5,-6,-7,-9,-10,-11,10,-2,-4,-3,-12,-8,-13,]),'BOOLEAN':([0,2,3,4,5,7,8,9,14,16,17,19,33,52,54,],[11,11,-5,-6,-7,-9,-10,-11,11,-2,-4,-3,-12,-8,-13,]),'TEXT':([0,2,3,4,5,7,8,9,14,16,17,19,33,52,54,],[12,12,-5,-6,-7,-9,-10,-11,12,-2,-4,-3,-12,-8,-13,]),'FLOAT':([0,2,3,4,5,7,8,9,14,15,16,17,19,28,33,34,35,36,37,38,41,51,52,54,],[13,13,-5,-6,-7,-9,-10,-11,13,26,-2,-4,-3,26,-12,26,26,26,26,26,26,26,-8,-13,]),'GET':([0,2,3,4,5,7,8,9,16,17,19,33,52,54,],[14,14,-5,-6,-7,-9,-10,-11,-2,-4,-3,-12,-8,-13,]),'SHOW':([0,2,3,4,5,7,8,9,16,17,19,33,52,54,],[15,15,-5,-6,-7,-9,-10,-11,-2,-4,-3,-12,-8,-13,]),'NEWLINE':([0,2,3,4,5,7,8,9,16,17,19,33,52,54,],[16,16,-5,-6,-7,-9,-10,19,-2,-4,-3,-12,-8,-13,]),'$end':([1,2,3,4,5,7,8,9,16,17,19,33,52,54,],[0,-1,-5,-6,-7,-9,-10,-11,-2,-4,-3,-12,-8,-13,]),'COLON':([6,10,11,12,13,20,],[18,-28,-29,-30,-31,32,]),'NULL':([15,28,41,51,],[23,23,23,23,]),'NUMBER':([15,28,34,35,36,37,38,41,51,],[25,25,25,25,25,25,25,25,25,]),'CHARCONST':([15,28,34,35,36,37,38,41,51,],[27,27,27,27,27,27,27,27,27,]),'LPAREN':([15,28,34,35,36,37,38,41,51,],[28,28,28,28,28,28,28,28,28,]),'IDENTIFIER':([15,18,28,32,34,35,36,37,38,40,41,51,],[30,31,30,42,30,30,30,30,30,49,30,30,]),'SEMICOLON':([21,22,23,24,25,26,27,29,30,43,44,45,46,47,48,49,50,53,],[33,-16,-32,-20,-21,-22,-23,-25,-26,-14,-15,-17,-18,-19,-24,-27,52,54,]),'PLUS':([21,22,23,24,25,26,27,29,30,39,43,44,45,46,47,48,49,50,53,],[34,-16,-32,-20,-21,-22,-23,-25,-26,34,-14,-15,-17,-18,-19,-24,-27,34,34,]),'MINUS':([21,22,23,24,25,26,27,29,30,39,43,44,45,46,47,48,49,50,53,],[35,-16,-32,-20,-21,-22,-23,-25,-26,35,-14,-15,-17,-18,-19,-24,-27,35,35,]),'RPAREN':([22,23,24,25,26,27,29,30,39,43,44,45,46,47,48,49,],[-16,-32,-20,-21,-22,-23,-25,-26,48,-14,-15,-17,-18,-19,-24,-27,]),'TIMES':([22,24,25,26,27,29,30,43,44,45,46,47,48,49,],[36,-20,-21,-22,-23,-25,-26,36,36,-17,-18,-19,-24,-27,]),'DIVIDE':([22,24,25,26,27,29,30,43,44,45,46,47,48,49,],[37,-20,-21,-22,-23,-25,-26,37,37,-17,-18,-19,-24,-27,]),'MOD':([22,24,25,26,27,29,30,43,44,45,46,47,48,49,],[38,-20,-21,-22,-23,-25,-26,38,38,-17,-18,-19,-24,-27,]),'DOT':([29,30,49,],[40,-26,-27,]),'EQUALS':([31,],[41,]),'BY':([42,],[51,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'print_statement':([0,],[1,]),'expression':([2,10,],[3,19,]),'term':([2,10,14,15,],[4,4,21,22,]),'factor':([2,10,14,15,16,17,18,],[6,6,6,6,23,24,25,]),'designator':([2,10,14,15,16,17,18,],[11,11,11,11,11,11,11,]),}
+_lr_goto_items = {'program':([0,],[1,]),'declaration_list':([0,],[2,]),'declaration':([0,2,],[3,17,]),'variable_declaration':([0,2,],[4,4,]),'statement':([0,2,],[5,5,]),'type':([0,2,14,],[6,6,20,]),'read_statement':([0,2,],[7,7,]),'print_statement':([0,2,],[8,8,]),'newline_statement':([0,2,],[9,9,]),'expression':([15,28,41,51,],[21,39,50,53,]),'term':([15,28,34,35,41,51,],[22,22,43,44,22,22,]),'factor':([15,28,34,35,36,37,38,41,51,],[24,24,24,24,45,46,47,24,24,]),'designator':([15,28,34,35,36,37,38,41,51,],[29,29,29,29,29,29,29,29,29,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,26 +26,37 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> print_statement","S'",1,None,None,None),
-  ('print_statement -> SHOW expression SEMICOLON','print_statement',3,'p_print_statement','parser.py',19),
-  ('expression -> expression PLUS term','expression',3,'p_expression','parser.py',24),
-  ('expression -> expression MINUS term','expression',3,'p_expression','parser.py',25),
-  ('expression -> term','expression',1,'p_expression','parser.py',26),
-  ('term -> term TIMES factor','term',3,'p_term','parser.py',36),
-  ('term -> term DIVIDE factor','term',3,'p_term','parser.py',37),
-  ('term -> term MOD factor','term',3,'p_term','parser.py',38),
-  ('term -> factor','term',1,'p_term','parser.py',39),
-  ('factor -> NUMBER','factor',1,'p_factor','parser.py',51),
-  ('factor -> FLOAT','factor',1,'p_factor','parser.py',52),
-  ('factor -> CHARCONST','factor',1,'p_factor','parser.py',53),
-  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',54),
-  ('factor -> designator','factor',1,'p_factor','parser.py',55),
-  ('designator -> IDENTIFIER','designator',1,'p_designator','parser.py',63),
-  ('designator -> designator DOT IDENTIFIER','designator',3,'p_designator','parser.py',64),
-  ('type -> INT','type',1,'p_type','parser.py',71),
-  ('type -> BOOLEAN','type',1,'p_type','parser.py',72),
-  ('type -> TEXT','type',1,'p_type','parser.py',73),
-  ('type -> FLOAT','type',1,'p_type','parser.py',74),
-  ('type -> IDENTIFIER','type',1,'p_type','parser.py',75),
-  ('expression -> NULL','expression',1,'p_null','parser.py',80),
+  ("S' -> program","S'",1,None,None,None),
+  ('program -> declaration_list','program',1,'p_program','parser.py',17),
+  ('newline_statement -> NEWLINE','newline_statement',1,'p_newline_statement','parser.py',21),
+  ('newline_statement -> newline_statement NEWLINE','newline_statement',2,'p_newline_statement','parser.py',22),
+  ('declaration_list -> declaration_list declaration','declaration_list',2,'p_declaration_list','parser.py',30),
+  ('declaration_list -> declaration','declaration_list',1,'p_declaration_list','parser.py',31),
+  ('declaration -> variable_declaration','declaration',1,'p_declaration','parser.py',38),
+  ('declaration -> statement','declaration',1,'p_declaration','parser.py',39),
+  ('variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON','variable_declaration',6,'p_variable_declaration','parser.py',43),
+  ('statement -> read_statement','statement',1,'p_statement','parser.py',48),
+  ('statement -> print_statement','statement',1,'p_statement','parser.py',49),
+  ('statement -> newline_statement','statement',1,'p_statement','parser.py',50),
+  ('print_statement -> SHOW expression SEMICOLON','print_statement',3,'p_print_statement','parser.py',54),
+  ('read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON','read_statement',7,'p_read_statement','parser.py',58),
+  ('expression -> expression PLUS term','expression',3,'p_expression','parser.py',62),
+  ('expression -> expression MINUS term','expression',3,'p_expression','parser.py',63),
+  ('expression -> term','expression',1,'p_expression','parser.py',64),
+  ('term -> term TIMES factor','term',3,'p_term','parser.py',74),
+  ('term -> term DIVIDE factor','term',3,'p_term','parser.py',75),
+  ('term -> term MOD factor','term',3,'p_term','parser.py',76),
+  ('term -> factor','term',1,'p_term','parser.py',77),
+  ('factor -> NUMBER','factor',1,'p_factor','parser.py',89),
+  ('factor -> FLOAT','factor',1,'p_factor','parser.py',90),
+  ('factor -> CHARCONST','factor',1,'p_factor','parser.py',91),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','parser.py',92),
+  ('factor -> designator','factor',1,'p_factor','parser.py',93),
+  ('designator -> IDENTIFIER','designator',1,'p_designator','parser.py',100),
+  ('designator -> designator DOT IDENTIFIER','designator',3,'p_designator','parser.py',101),
+  ('type -> INT','type',1,'p_type','parser.py',108),
+  ('type -> BOOLEAN','type',1,'p_type','parser.py',109),
+  ('type -> TEXT','type',1,'p_type','parser.py',110),
+  ('type -> FLOAT','type',1,'p_type','parser.py',111),
+  ('expression -> NULL','expression',1,'p_null','parser.py',115),
 ]

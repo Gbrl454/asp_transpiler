@@ -1,1 +1,957 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMA
+    DO
+    EITHER
+    END
+    EQ
+    FOR
+    FUNCTION
+    GT
+    GTE
+    HAVING
+    IN
+    LBRACE
+    LT
+    LTE
+    NEQ
+    OR
+    RBRACE
+    RETURN
+    TYPE
+    VAR
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declaration_list
+Rule 2     newline_statement -> NEWLINE
+Rule 3     newline_statement -> newline_statement NEWLINE
+Rule 4     declaration_list -> declaration_list declaration
+Rule 5     declaration_list -> declaration
+Rule 6     declaration -> variable_declaration
+Rule 7     declaration -> statement
+Rule 8     variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON
+Rule 9     statement -> read_statement
+Rule 10    statement -> print_statement
+Rule 11    statement -> newline_statement
+Rule 12    print_statement -> SHOW expression SEMICOLON
+Rule 13    read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON
+Rule 14    expression -> expression PLUS term
+Rule 15    expression -> expression MINUS term
+Rule 16    expression -> term
+Rule 17    term -> term TIMES factor
+Rule 18    term -> term DIVIDE factor
+Rule 19    term -> term MOD factor
+Rule 20    term -> factor
+Rule 21    factor -> NUMBER
+Rule 22    factor -> FLOAT
+Rule 23    factor -> CHARCONST
+Rule 24    factor -> LPAREN expression RPAREN
+Rule 25    factor -> designator
+Rule 26    designator -> IDENTIFIER
+Rule 27    designator -> designator DOT IDENTIFIER
+Rule 28    type -> INT
+Rule 29    type -> BOOLEAN
+Rule 30    type -> TEXT
+Rule 31    type -> FLOAT
+Rule 32    expression -> NULL
+
+Terminals, with rules where they appear
+
+BOOLEAN              : 29
+BY                   : 13
+CHARCONST            : 23
+COLON                : 8 13
+COMMA                : 
+DIVIDE               : 18
+DO                   : 
+DOT                  : 27
+EITHER               : 
+END                  : 
+EQ                   : 
+EQUALS               : 8
+FLOAT                : 22 31
+FOR                  : 
+FUNCTION             : 
+GET                  : 13
+GT                   : 
+GTE                  : 
+HAVING               : 
+IDENTIFIER           : 8 13 26 27
+IN                   : 
+INT                  : 28
+LBRACE               : 
+LPAREN               : 24
+LT                   : 
+LTE                  : 
+MINUS                : 15
+MOD                  : 19
+NEQ                  : 
+NEWLINE              : 2 3
+NULL                 : 32
+NUMBER               : 21
+OR                   : 
+PLUS                 : 14
+RBRACE               : 
+RETURN               : 
+RPAREN               : 24
+SEMICOLON            : 8 12 13
+SHOW                 : 12
+TEXT                 : 30
+TIMES                : 17
+TYPE                 : 
+VAR                  : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+declaration          : 4 5
+declaration_list     : 1 4
+designator           : 25 27
+expression           : 8 12 13 14 15 24
+factor               : 17 18 19 20
+newline_statement    : 3 11
+print_statement      : 10
+program              : 0
+read_statement       : 9
+statement            : 7
+term                 : 14 15 16 17 18 19
+type                 : 8 13
+variable_declaration : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declaration_list
+    (4) declaration_list -> . declaration_list declaration
+    (5) declaration_list -> . declaration
+    (6) declaration -> . variable_declaration
+    (7) declaration -> . statement
+    (8) variable_declaration -> . type COLON IDENTIFIER EQUALS expression SEMICOLON
+    (9) statement -> . read_statement
+    (10) statement -> . print_statement
+    (11) statement -> . newline_statement
+    (28) type -> . INT
+    (29) type -> . BOOLEAN
+    (30) type -> . TEXT
+    (31) type -> . FLOAT
+    (13) read_statement -> . GET type COLON IDENTIFIER BY expression SEMICOLON
+    (12) print_statement -> . SHOW expression SEMICOLON
+    (2) newline_statement -> . NEWLINE
+    (3) newline_statement -> . newline_statement NEWLINE
+
+    INT             shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    TEXT            shift and go to state 12
+    FLOAT           shift and go to state 13
+    GET             shift and go to state 14
+    SHOW            shift and go to state 15
+    NEWLINE         shift and go to state 16
+
+    program                        shift and go to state 1
+    declaration_list               shift and go to state 2
+    declaration                    shift and go to state 3
+    variable_declaration           shift and go to state 4
+    statement                      shift and go to state 5
+    type                           shift and go to state 6
+    read_statement                 shift and go to state 7
+    print_statement                shift and go to state 8
+    newline_statement              shift and go to state 9
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> declaration_list .
+    (4) declaration_list -> declaration_list . declaration
+    (6) declaration -> . variable_declaration
+    (7) declaration -> . statement
+    (8) variable_declaration -> . type COLON IDENTIFIER EQUALS expression SEMICOLON
+    (9) statement -> . read_statement
+    (10) statement -> . print_statement
+    (11) statement -> . newline_statement
+    (28) type -> . INT
+    (29) type -> . BOOLEAN
+    (30) type -> . TEXT
+    (31) type -> . FLOAT
+    (13) read_statement -> . GET type COLON IDENTIFIER BY expression SEMICOLON
+    (12) print_statement -> . SHOW expression SEMICOLON
+    (2) newline_statement -> . NEWLINE
+    (3) newline_statement -> . newline_statement NEWLINE
+
+    $end            reduce using rule 1 (program -> declaration_list .)
+    INT             shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    TEXT            shift and go to state 12
+    FLOAT           shift and go to state 13
+    GET             shift and go to state 14
+    SHOW            shift and go to state 15
+    NEWLINE         shift and go to state 16
+
+    declaration                    shift and go to state 17
+    variable_declaration           shift and go to state 4
+    statement                      shift and go to state 5
+    type                           shift and go to state 6
+    read_statement                 shift and go to state 7
+    print_statement                shift and go to state 8
+    newline_statement              shift and go to state 9
+
+state 3
+
+    (5) declaration_list -> declaration .
+
+    INT             reduce using rule 5 (declaration_list -> declaration .)
+    BOOLEAN         reduce using rule 5 (declaration_list -> declaration .)
+    TEXT            reduce using rule 5 (declaration_list -> declaration .)
+    FLOAT           reduce using rule 5 (declaration_list -> declaration .)
+    GET             reduce using rule 5 (declaration_list -> declaration .)
+    SHOW            reduce using rule 5 (declaration_list -> declaration .)
+    NEWLINE         reduce using rule 5 (declaration_list -> declaration .)
+    $end            reduce using rule 5 (declaration_list -> declaration .)
+
+
+state 4
+
+    (6) declaration -> variable_declaration .
+
+    INT             reduce using rule 6 (declaration -> variable_declaration .)
+    BOOLEAN         reduce using rule 6 (declaration -> variable_declaration .)
+    TEXT            reduce using rule 6 (declaration -> variable_declaration .)
+    FLOAT           reduce using rule 6 (declaration -> variable_declaration .)
+    GET             reduce using rule 6 (declaration -> variable_declaration .)
+    SHOW            reduce using rule 6 (declaration -> variable_declaration .)
+    NEWLINE         reduce using rule 6 (declaration -> variable_declaration .)
+    $end            reduce using rule 6 (declaration -> variable_declaration .)
+
+
+state 5
+
+    (7) declaration -> statement .
+
+    INT             reduce using rule 7 (declaration -> statement .)
+    BOOLEAN         reduce using rule 7 (declaration -> statement .)
+    TEXT            reduce using rule 7 (declaration -> statement .)
+    FLOAT           reduce using rule 7 (declaration -> statement .)
+    GET             reduce using rule 7 (declaration -> statement .)
+    SHOW            reduce using rule 7 (declaration -> statement .)
+    NEWLINE         reduce using rule 7 (declaration -> statement .)
+    $end            reduce using rule 7 (declaration -> statement .)
+
+
+state 6
+
+    (8) variable_declaration -> type . COLON IDENTIFIER EQUALS expression SEMICOLON
+
+    COLON           shift and go to state 18
+
+
+state 7
+
+    (9) statement -> read_statement .
+
+    INT             reduce using rule 9 (statement -> read_statement .)
+    BOOLEAN         reduce using rule 9 (statement -> read_statement .)
+    TEXT            reduce using rule 9 (statement -> read_statement .)
+    FLOAT           reduce using rule 9 (statement -> read_statement .)
+    GET             reduce using rule 9 (statement -> read_statement .)
+    SHOW            reduce using rule 9 (statement -> read_statement .)
+    NEWLINE         reduce using rule 9 (statement -> read_statement .)
+    $end            reduce using rule 9 (statement -> read_statement .)
+
+
+state 8
+
+    (10) statement -> print_statement .
+
+    INT             reduce using rule 10 (statement -> print_statement .)
+    BOOLEAN         reduce using rule 10 (statement -> print_statement .)
+    TEXT            reduce using rule 10 (statement -> print_statement .)
+    FLOAT           reduce using rule 10 (statement -> print_statement .)
+    GET             reduce using rule 10 (statement -> print_statement .)
+    SHOW            reduce using rule 10 (statement -> print_statement .)
+    NEWLINE         reduce using rule 10 (statement -> print_statement .)
+    $end            reduce using rule 10 (statement -> print_statement .)
+
+
+state 9
+
+    (11) statement -> newline_statement .
+    (3) newline_statement -> newline_statement . NEWLINE
+
+  ! shift/reduce conflict for NEWLINE resolved as shift
+    INT             reduce using rule 11 (statement -> newline_statement .)
+    BOOLEAN         reduce using rule 11 (statement -> newline_statement .)
+    TEXT            reduce using rule 11 (statement -> newline_statement .)
+    FLOAT           reduce using rule 11 (statement -> newline_statement .)
+    GET             reduce using rule 11 (statement -> newline_statement .)
+    SHOW            reduce using rule 11 (statement -> newline_statement .)
+    $end            reduce using rule 11 (statement -> newline_statement .)
+    NEWLINE         shift and go to state 19
+
+  ! NEWLINE         [ reduce using rule 11 (statement -> newline_statement .) ]
+
+
+state 10
+
+    (28) type -> INT .
+
+    COLON           reduce using rule 28 (type -> INT .)
+
+
+state 11
+
+    (29) type -> BOOLEAN .
+
+    COLON           reduce using rule 29 (type -> BOOLEAN .)
+
+
+state 12
+
+    (30) type -> TEXT .
+
+    COLON           reduce using rule 30 (type -> TEXT .)
+
+
+state 13
+
+    (31) type -> FLOAT .
+
+    COLON           reduce using rule 31 (type -> FLOAT .)
+
+
+state 14
+
+    (13) read_statement -> GET . type COLON IDENTIFIER BY expression SEMICOLON
+    (28) type -> . INT
+    (29) type -> . BOOLEAN
+    (30) type -> . TEXT
+    (31) type -> . FLOAT
+
+    INT             shift and go to state 10
+    BOOLEAN         shift and go to state 11
+    TEXT            shift and go to state 12
+    FLOAT           shift and go to state 13
+
+    type                           shift and go to state 20
+
+state 15
+
+    (12) print_statement -> SHOW . expression SEMICOLON
+    (14) expression -> . expression PLUS term
+    (15) expression -> . expression MINUS term
+    (16) expression -> . term
+    (32) expression -> . NULL
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NULL            shift and go to state 23
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    expression                     shift and go to state 21
+    term                           shift and go to state 22
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 16
+
+    (2) newline_statement -> NEWLINE .
+
+    NEWLINE         reduce using rule 2 (newline_statement -> NEWLINE .)
+    INT             reduce using rule 2 (newline_statement -> NEWLINE .)
+    BOOLEAN         reduce using rule 2 (newline_statement -> NEWLINE .)
+    TEXT            reduce using rule 2 (newline_statement -> NEWLINE .)
+    FLOAT           reduce using rule 2 (newline_statement -> NEWLINE .)
+    GET             reduce using rule 2 (newline_statement -> NEWLINE .)
+    SHOW            reduce using rule 2 (newline_statement -> NEWLINE .)
+    $end            reduce using rule 2 (newline_statement -> NEWLINE .)
+
+
+state 17
+
+    (4) declaration_list -> declaration_list declaration .
+
+    INT             reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    BOOLEAN         reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    TEXT            reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    FLOAT           reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    GET             reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    SHOW            reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    NEWLINE         reduce using rule 4 (declaration_list -> declaration_list declaration .)
+    $end            reduce using rule 4 (declaration_list -> declaration_list declaration .)
+
+
+state 18
+
+    (8) variable_declaration -> type COLON . IDENTIFIER EQUALS expression SEMICOLON
+
+    IDENTIFIER      shift and go to state 31
+
+
+state 19
+
+    (3) newline_statement -> newline_statement NEWLINE .
+
+    NEWLINE         reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    INT             reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    BOOLEAN         reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    TEXT            reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    FLOAT           reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    GET             reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    SHOW            reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+    $end            reduce using rule 3 (newline_statement -> newline_statement NEWLINE .)
+
+
+state 20
+
+    (13) read_statement -> GET type . COLON IDENTIFIER BY expression SEMICOLON
+
+    COLON           shift and go to state 32
+
+
+state 21
+
+    (12) print_statement -> SHOW expression . SEMICOLON
+    (14) expression -> expression . PLUS term
+    (15) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 33
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 22
+
+    (16) expression -> term .
+    (17) term -> term . TIMES factor
+    (18) term -> term . DIVIDE factor
+    (19) term -> term . MOD factor
+
+    SEMICOLON       reduce using rule 16 (expression -> term .)
+    PLUS            reduce using rule 16 (expression -> term .)
+    MINUS           reduce using rule 16 (expression -> term .)
+    RPAREN          reduce using rule 16 (expression -> term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 23
+
+    (32) expression -> NULL .
+
+    SEMICOLON       reduce using rule 32 (expression -> NULL .)
+    PLUS            reduce using rule 32 (expression -> NULL .)
+    MINUS           reduce using rule 32 (expression -> NULL .)
+    RPAREN          reduce using rule 32 (expression -> NULL .)
+
+
+state 24
+
+    (20) term -> factor .
+
+    TIMES           reduce using rule 20 (term -> factor .)
+    DIVIDE          reduce using rule 20 (term -> factor .)
+    MOD             reduce using rule 20 (term -> factor .)
+    SEMICOLON       reduce using rule 20 (term -> factor .)
+    PLUS            reduce using rule 20 (term -> factor .)
+    MINUS           reduce using rule 20 (term -> factor .)
+    RPAREN          reduce using rule 20 (term -> factor .)
+
+
+state 25
+
+    (21) factor -> NUMBER .
+
+    TIMES           reduce using rule 21 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 21 (factor -> NUMBER .)
+    MOD             reduce using rule 21 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 21 (factor -> NUMBER .)
+    PLUS            reduce using rule 21 (factor -> NUMBER .)
+    MINUS           reduce using rule 21 (factor -> NUMBER .)
+    RPAREN          reduce using rule 21 (factor -> NUMBER .)
+
+
+state 26
+
+    (22) factor -> FLOAT .
+
+    TIMES           reduce using rule 22 (factor -> FLOAT .)
+    DIVIDE          reduce using rule 22 (factor -> FLOAT .)
+    MOD             reduce using rule 22 (factor -> FLOAT .)
+    SEMICOLON       reduce using rule 22 (factor -> FLOAT .)
+    PLUS            reduce using rule 22 (factor -> FLOAT .)
+    MINUS           reduce using rule 22 (factor -> FLOAT .)
+    RPAREN          reduce using rule 22 (factor -> FLOAT .)
+
+
+state 27
+
+    (23) factor -> CHARCONST .
+
+    TIMES           reduce using rule 23 (factor -> CHARCONST .)
+    DIVIDE          reduce using rule 23 (factor -> CHARCONST .)
+    MOD             reduce using rule 23 (factor -> CHARCONST .)
+    SEMICOLON       reduce using rule 23 (factor -> CHARCONST .)
+    PLUS            reduce using rule 23 (factor -> CHARCONST .)
+    MINUS           reduce using rule 23 (factor -> CHARCONST .)
+    RPAREN          reduce using rule 23 (factor -> CHARCONST .)
+
+
+state 28
+
+    (24) factor -> LPAREN . expression RPAREN
+    (14) expression -> . expression PLUS term
+    (15) expression -> . expression MINUS term
+    (16) expression -> . term
+    (32) expression -> . NULL
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NULL            shift and go to state 23
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    expression                     shift and go to state 39
+    term                           shift and go to state 22
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 29
+
+    (25) factor -> designator .
+    (27) designator -> designator . DOT IDENTIFIER
+
+    TIMES           reduce using rule 25 (factor -> designator .)
+    DIVIDE          reduce using rule 25 (factor -> designator .)
+    MOD             reduce using rule 25 (factor -> designator .)
+    SEMICOLON       reduce using rule 25 (factor -> designator .)
+    PLUS            reduce using rule 25 (factor -> designator .)
+    MINUS           reduce using rule 25 (factor -> designator .)
+    RPAREN          reduce using rule 25 (factor -> designator .)
+    DOT             shift and go to state 40
+
+
+state 30
+
+    (26) designator -> IDENTIFIER .
+
+    DOT             reduce using rule 26 (designator -> IDENTIFIER .)
+    TIMES           reduce using rule 26 (designator -> IDENTIFIER .)
+    DIVIDE          reduce using rule 26 (designator -> IDENTIFIER .)
+    MOD             reduce using rule 26 (designator -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 26 (designator -> IDENTIFIER .)
+    PLUS            reduce using rule 26 (designator -> IDENTIFIER .)
+    MINUS           reduce using rule 26 (designator -> IDENTIFIER .)
+    RPAREN          reduce using rule 26 (designator -> IDENTIFIER .)
+
+
+state 31
+
+    (8) variable_declaration -> type COLON IDENTIFIER . EQUALS expression SEMICOLON
+
+    EQUALS          shift and go to state 41
+
+
+state 32
+
+    (13) read_statement -> GET type COLON . IDENTIFIER BY expression SEMICOLON
+
+    IDENTIFIER      shift and go to state 42
+
+
+state 33
+
+    (12) print_statement -> SHOW expression SEMICOLON .
+
+    INT             reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    BOOLEAN         reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    TEXT            reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    FLOAT           reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    GET             reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    SHOW            reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    NEWLINE         reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+    $end            reduce using rule 12 (print_statement -> SHOW expression SEMICOLON .)
+
+
+state 34
+
+    (14) expression -> expression PLUS . term
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    term                           shift and go to state 43
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 35
+
+    (15) expression -> expression MINUS . term
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    term                           shift and go to state 44
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 36
+
+    (17) term -> term TIMES . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    factor                         shift and go to state 45
+    designator                     shift and go to state 29
+
+state 37
+
+    (18) term -> term DIVIDE . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    factor                         shift and go to state 46
+    designator                     shift and go to state 29
+
+state 38
+
+    (19) term -> term MOD . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    factor                         shift and go to state 47
+    designator                     shift and go to state 29
+
+state 39
+
+    (24) factor -> LPAREN expression . RPAREN
+    (14) expression -> expression . PLUS term
+    (15) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 48
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 40
+
+    (27) designator -> designator DOT . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 49
+
+
+state 41
+
+    (8) variable_declaration -> type COLON IDENTIFIER EQUALS . expression SEMICOLON
+    (14) expression -> . expression PLUS term
+    (15) expression -> . expression MINUS term
+    (16) expression -> . term
+    (32) expression -> . NULL
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NULL            shift and go to state 23
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    expression                     shift and go to state 50
+    term                           shift and go to state 22
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 42
+
+    (13) read_statement -> GET type COLON IDENTIFIER . BY expression SEMICOLON
+
+    BY              shift and go to state 51
+
+
+state 43
+
+    (14) expression -> expression PLUS term .
+    (17) term -> term . TIMES factor
+    (18) term -> term . DIVIDE factor
+    (19) term -> term . MOD factor
+
+    SEMICOLON       reduce using rule 14 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 14 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 14 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 14 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 44
+
+    (15) expression -> expression MINUS term .
+    (17) term -> term . TIMES factor
+    (18) term -> term . DIVIDE factor
+    (19) term -> term . MOD factor
+
+    SEMICOLON       reduce using rule 15 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 15 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 15 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 15 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 45
+
+    (17) term -> term TIMES factor .
+
+    TIMES           reduce using rule 17 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 17 (term -> term TIMES factor .)
+    MOD             reduce using rule 17 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 17 (term -> term TIMES factor .)
+    PLUS            reduce using rule 17 (term -> term TIMES factor .)
+    MINUS           reduce using rule 17 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 17 (term -> term TIMES factor .)
+
+
+state 46
+
+    (18) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 18 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 18 (term -> term DIVIDE factor .)
+    MOD             reduce using rule 18 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 18 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 18 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 18 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 18 (term -> term DIVIDE factor .)
+
+
+state 47
+
+    (19) term -> term MOD factor .
+
+    TIMES           reduce using rule 19 (term -> term MOD factor .)
+    DIVIDE          reduce using rule 19 (term -> term MOD factor .)
+    MOD             reduce using rule 19 (term -> term MOD factor .)
+    SEMICOLON       reduce using rule 19 (term -> term MOD factor .)
+    PLUS            reduce using rule 19 (term -> term MOD factor .)
+    MINUS           reduce using rule 19 (term -> term MOD factor .)
+    RPAREN          reduce using rule 19 (term -> term MOD factor .)
+
+
+state 48
+
+    (24) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 24 (factor -> LPAREN expression RPAREN .)
+
+
+state 49
+
+    (27) designator -> designator DOT IDENTIFIER .
+
+    DOT             reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    TIMES           reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    DIVIDE          reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    MOD             reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    SEMICOLON       reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    PLUS            reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    MINUS           reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+    RPAREN          reduce using rule 27 (designator -> designator DOT IDENTIFIER .)
+
+
+state 50
+
+    (8) variable_declaration -> type COLON IDENTIFIER EQUALS expression . SEMICOLON
+    (14) expression -> expression . PLUS term
+    (15) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 52
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 51
+
+    (13) read_statement -> GET type COLON IDENTIFIER BY . expression SEMICOLON
+    (14) expression -> . expression PLUS term
+    (15) expression -> . expression MINUS term
+    (16) expression -> . term
+    (32) expression -> . NULL
+    (17) term -> . term TIMES factor
+    (18) term -> . term DIVIDE factor
+    (19) term -> . term MOD factor
+    (20) term -> . factor
+    (21) factor -> . NUMBER
+    (22) factor -> . FLOAT
+    (23) factor -> . CHARCONST
+    (24) factor -> . LPAREN expression RPAREN
+    (25) factor -> . designator
+    (26) designator -> . IDENTIFIER
+    (27) designator -> . designator DOT IDENTIFIER
+
+    NULL            shift and go to state 23
+    NUMBER          shift and go to state 25
+    FLOAT           shift and go to state 26
+    CHARCONST       shift and go to state 27
+    LPAREN          shift and go to state 28
+    IDENTIFIER      shift and go to state 30
+
+    expression                     shift and go to state 53
+    term                           shift and go to state 22
+    factor                         shift and go to state 24
+    designator                     shift and go to state 29
+
+state 52
+
+    (8) variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .
+
+    INT             reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    BOOLEAN         reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    TEXT            reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    FLOAT           reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    GET             reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    SHOW            reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    NEWLINE         reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+    $end            reduce using rule 8 (variable_declaration -> type COLON IDENTIFIER EQUALS expression SEMICOLON .)
+
+
+state 53
+
+    (13) read_statement -> GET type COLON IDENTIFIER BY expression . SEMICOLON
+    (14) expression -> expression . PLUS term
+    (15) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 54
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 54
+
+    (13) read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .
+
+    INT             reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    BOOLEAN         reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    TEXT            reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    FLOAT           reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    GET             reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    SHOW            reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    NEWLINE         reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+    $end            reduce using rule 13 (read_statement -> GET type COLON IDENTIFIER BY expression SEMICOLON .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NEWLINE in state 9 resolved as shift
