@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 from lexer import tokens
 
+typs = ['number', 'float', 'int', 'boolean', 'charconst', 'text', 'null']
 tokens = tokens
 TAB = '    '
 
@@ -116,10 +117,9 @@ def p_expression(p):
                   | factor"""
     if len(p) == 4:
         if p[2] in ('+','-','*','/','%','==','!=','>','<','>=','<=','=','or'):
-            p[0] = (str(p[0]) ,' ', p[1],' ',p[2],' ',p[3])
+            p[0] = (p[1],' ',p[2],' ',p[3])
     else:
         p[0] = p[1]
-
 
 def p_factor(p):
     '''factor : NUMBER
@@ -131,10 +131,16 @@ def p_factor(p):
               | NULL
               | LPAREN expression RPAREN
               | designator'''
-    if len(p) == 2 and type(p[1]) == str and p[1] not in variables.keys():
-        p[0] = "'" + p[1] + "'"
-    elif len(p) == 2:
-        p[0] = p[1]
+    if len(p) == 2:
+        if type(p[1]) == str:
+            if p[1] == 'null':
+                p[0] = 'None'
+            elif (p[1] not in variables.keys()) and p[1] not in typs:
+                p[0] = "'" + p[1] + "'"
+            else:
+                p[0] = p[1]
+        else:
+            p[0] = p[1]
     elif len(p) == 4:
         p[0] = p[2]
 
