@@ -69,6 +69,7 @@ t_GT = r'>'
 t_GTE = r'>='
 t_LT = r'<'
 t_LTE = r'<='
+t_OR = r'or'
 t_NEWLINE = r'\n'
 
 # Palavras reservadas

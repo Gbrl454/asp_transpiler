@@ -9,12 +9,12 @@ with open('input.cap', 'r') as file:
 lexer.input(data)
 
 # Tokeniza a entrada
-# print("Tokens:")
-# while True:
-#     tok = lexer.token()
-#     if not tok:
-#         break
-#     print(tok)
+print("Tokens:")
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(tok)
 
 # Parsea a entrada
 result = parser.parse(data)
