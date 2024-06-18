@@ -17,12 +17,3 @@ while True:
 # Parsea a entrada
 print("\nParsing:")
 result = parser.parse(data)
-
-# # Mostra as variáveis e funções
-# print("\nVariables:")
-# for var, value in variables.items():
-#     print(f"{var} = {value}")
-#
-# print("\nFunctions:")
-# for func, details in functions.items():
-#     print(f"{func} = {details}")

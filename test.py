@@ -2,13 +2,7 @@ from lexer import lexer
 from parser import parser
 
 data = '''
-int x = 5;
-int y = 10;
-int z = x + y;
-function add(int a, int b) {
-    return a + b;
-}
-y = add(x, z);
+show 'Alunos aprovados: ' + 0;
 '''
 
 # Alimenta o lexer com dados de entrada
@@ -26,11 +20,16 @@ while True:
 print("\nParsing:")
 result = parser.parse(data)
 
-# Mostra as variáveis e funções
-print("\nVariables:")
-for var, value in variables.items():
-    print(f"{var} = {value}")
 
-print("\nFunctions:")
-for func, details in functions.items():
-    print(f"{func} = {details}")
+def loop(l):
+    code = ''
+    for i in l:
+        if type(i) == tuple:
+            code += loop(i)
+        else:
+            code += str(i)
+    return code
+
+
+print("\n")
+print(loop(result))
