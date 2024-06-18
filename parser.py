@@ -49,6 +49,7 @@ def p_variable_declaration(p):
 def p_statement(p):
     """statement : read_statement
                  | print_statement
+                 | for_statement
                  | newline_statement"""
     p[0] = p[1]
 
@@ -58,7 +59,21 @@ def p_print_statement(p):
 
 def p_read_statement(p):
     """read_statement : GET type COLON IDENTIFIER BY expression SEMICOLON"""
+    variables[p[4]] = (p[6], p[1])
     p[0] = ("print",'(',p[6],')','\n',p[4],': ' + p[2],' = ', p[2],'(','input()',')')
+
+def loop(l):
+    code = []
+    if l != None:
+        for i in l:
+            code.append(loop(i) if type(i) in (tuple, list) else i.replace('\n','\n    '))
+    if '\n' in code[-1]:
+        code [-1] =''
+    return code
+
+def p_for_statement(p):
+    """for_statement : FOR IDENTIFIER IN RANGE expression DO NEWLINE declaration_list END"""       
+    p[0] = ('for',' ',p[2],' ', 'in', ' ', 'range', '(',p[5],')',':','\n    ',loop(p[8]))
 
 def p_expression(p):
     """expression : expression PLUS term
@@ -78,12 +93,8 @@ def p_term(p):
             | term MOD factor
             | factor"""
     if len(p) == 4:
-        if p[2] == '*':
-            p[0] = p[1] * p[3]
-        elif p[2] == '/':
-            p[0] = p[1] / p[3]
-        elif p[2] == '%':
-            p[0] = p[1] % p[3]
+        if p[2] in ('+','-','*','/','%'):
+            p[0] = (p[1]," ",p[2]," ",p[3])
     else:
         p[0] = p[1]
 
@@ -99,7 +110,6 @@ def p_factor(p):
         p[0] = p[1]
     elif len(p) == 4:
         p[0] = p[2]
-    print(f"Factor: {p[0]}")
 
 def p_designator(p):
     """designator : IDENTIFIER
@@ -126,6 +136,5 @@ def p_error(p):
     else:
         print("Syntax error at EOF")
 
-# Constrói o parser
 parser = yacc.yacc()
  # type: ignore

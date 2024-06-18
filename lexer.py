@@ -44,7 +44,8 @@ tokens = (
     'LTE',
     'TYPE',
     'VAR',
-    'NEWLINE'
+    'NEWLINE',
+    'RANGE'
 )
 
 # Regras de expressões regulares para tokens simples
@@ -89,7 +90,8 @@ reserved = {
     'either': 'EITHER',
     'show': 'SHOW',
     'return': 'RETURN',
-    'var': 'VAR'
+    'var': 'VAR',
+    'range': 'RANGE'
 }
 
 # Regras de expressões regulares com ações
