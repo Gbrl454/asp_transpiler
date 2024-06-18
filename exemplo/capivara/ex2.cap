@@ -19,9 +19,9 @@ end
 show '* Pedra, Papel e Tesoura *'
 get int:qRodadas by 'Rodadas: ';
 
-for i in range(qRodadas) do
+for i in range qRodadas do
     get txt:jogador1 by 'Jogador 1: ';
     get txt:jogador2 by 'Jogador 2: ';
 
-    define_vencedor with jogador1, jogador2, i+1
+    define_vencedor with jogador1 jogador2 i+1;
 end
